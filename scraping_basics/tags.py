@@ -40,16 +40,30 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 # print(cont)
 
 
-ulTag = soup.new_tag("ul")
+# ulTag = soup.new_tag("ul")
 
-liTag = soup.new_tag("li")
-liTag.string = "I am a new li"
-ulTag.append(liTag)
+# liTag = soup.new_tag("li")
+# liTag.string = "I am a new li"
+# ulTag.append(liTag)
 
-liTag = soup.new_tag("li")
-liTag.string = "I am a new li1"
-ulTag.append(liTag)
+# liTag = soup.new_tag("li")
+# liTag.string = "I am a new li1"
+# ulTag.append(liTag)
 
-soup.html.body.insert(0, ulTag)
-with open("modifies.html", "w", encoding="utf-8") as f:
-    f.write(str(soup))
+# soup.html.body.insert(0, ulTag)
+# with open("modifies.html", "w", encoding="utf-8") as f:
+#     f.write(str(soup))
+
+# cont = soup.find(class_="aos")
+# print(cont.has_attr("data-cat"))
+
+def has_class_but_not_id(tag):
+    return not tag.has_attr("class") and not tag.has_attr("id")
+
+def has_content(tag):
+    return tag.has_attr("content")
+
+# results = soup.find_all(has_class_but_not_id)
+results = soup.find_all(has_content)
+for result in results:
+    print(result,"\n\n")
